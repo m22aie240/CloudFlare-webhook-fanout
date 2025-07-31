@@ -1,6 +1,7 @@
 // ---------------------------------------------------------------------
 // File: src/hmac.ts
 // ---------------------------------------------------------------------
+import { webcrypto as _crypto } from "node:crypto";
 export async function verifySignature(body: ArrayBuffer, headerSig: string, secret: string): Promise<boolean> {
   const algo = { name: "HMAC", hash: "SHA-256" } as const;
   const keyData = new TextEncoder().encode(secret);
