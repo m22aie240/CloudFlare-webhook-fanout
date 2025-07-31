@@ -17,6 +17,6 @@ jobs:
         with:
           node-version: 20          # Node 20 has Web-Crypto by default
 
-      - run: npm ci
+      - run: npm install --no-audit --no-fund
 
       - run: npm run test
