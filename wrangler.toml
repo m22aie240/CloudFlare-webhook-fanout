@@ -1,0 +1,21 @@
+
+// ---------------------------------------------------------------------
+// File: wrangler.toml
+// ---------------------------------------------------------------------
+name = "cf-webhook-fanout"
+compatibility_date = "2025-07-31"
+main = "src/handler.ts"
+# Queue consumer configured later under "fanout-queue"
+[[queues.producers]]
+binding = "FANOUT_QUEUE"
+queue = "fanout-queue"
+
+[[queues.consumers]]
+queue = "fanout-queue"
+max_batch_size = 10
+max_batch_timeout = 5
+consumer = "src/fanout.ts"
+
+[vars]
+# Comma‑separated list of target URLs; replace with Secrets in prod
+TARGET_URLS = "https://example.com/webhook,https://backup.example.com/hook"
